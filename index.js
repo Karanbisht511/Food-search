@@ -3,7 +3,7 @@ const ejs = require("ejs");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
