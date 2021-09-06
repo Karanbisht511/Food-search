@@ -14,11 +14,16 @@
 <%- include('header') -%>
   
   <section class="content">
+
+   <% if(list.length===0) {%>
+    <h1>NOT Found . Please try something else.</h1>
+<% } else {%>
     <% for(let i=0; i<list.length ;i++) {   %>
       <div>
         <h1>  <%= list[i].title  %> </h1>
         <p> <img src=<%= list[i].image %> alt=<%= list[i].title  %> />  </p>     
       </div>
+       <% }  %>
        <% }  %>
   </section>
 

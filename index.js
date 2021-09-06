@@ -15,11 +15,11 @@ const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api}`;
 
 app.set("view engine", "ejs");
 
-app.get("/home", async (req, res) => {
+app.get("/", async (req, res) => {
   let data = await axios
     .get(`${url}&query=pasta`)
     .then((response) => {
-      console.log(response.data.results);
+      // console.log(response.data.results);
 
       return response.data;
     })
@@ -30,6 +30,7 @@ app.get("/home", async (req, res) => {
   let arr = data.results.map((element) => {
     return element;
   });
+
   res.render("main", { list: arr });
 });
 
@@ -39,39 +40,18 @@ app.post("/*", async (req, res) => {
   let data = await axios
     .get(`${url}&query=${sss}`)
     .then((response) => {
-      console.log(response.data.results);
-
+      // console.log(response.data.results);
       return response.data;
     })
     .catch((err) => {
       console.log(err);
     });
-
   let arr = data.results.map((element) => {
     return element;
   });
+
   res.render("main", { list: arr });
 });
-
-// app.get("/:query", async (req, res) => {
-//   let sss = req.params.query;
-//   console.log(sss);
-//   let data = await axios
-//     .get(`${url}&query=${sss}`)
-//     .then((response) => {
-//       console.log(response.data.results);
-
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-
-//   let arr = data.results.map((element) => {
-//     return element;
-//   });
-//   res.render("template", { list: arr });
-// });
 
 app.listen(port, () => {
   console.log("server is running on ", port);
